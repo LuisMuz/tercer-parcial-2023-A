@@ -1,5 +1,7 @@
 package edu.uaslp.objetos.shoppingcart;
 
+import edu.uaslp.objetos.exception.ItemNotFoundException;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,14 +28,15 @@ public class ShoppingItemCatalog {
         catalog.put("ABC4000", new ShoppingItem("Televisión", "Articulo de entretenimiento", "ABC4000", 1678200));
         catalog.put("ABC4001", new ShoppingItem("Home Theather", "Articulo de entretenimiento", "ABC4001", 846800));
         catalog.put("ABC4002", new ShoppingItem("Barra de sonido", "Articulo de entretenimiento", "ABC4002", 1125000));
+
     }
 
-    public ShoppingItem getItem(String code){
+    public ShoppingItem getItem(String code) throws ItemNotFoundException{
         if(catalog.containsKey(code)){
             return catalog.get(code);
         }
 
-        return null;
+        throw  new ItemNotFoundException("Item with code "+code+" not found");
     }
 
 }
